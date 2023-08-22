@@ -1,5 +1,6 @@
 "use client";
 import Input from "@/app/common/input/input-component";
+import Image from "next/image";
 import React, { useRef, useState } from "react";
 
 interface Image {
@@ -11,18 +12,18 @@ function BlogForm() {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [images, setImages] = useState<Image[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [title, setTitle] = useState<string | undefined>('');
-  const [description, setDescription] = useState<string | undefined>('');
+  const [title, setTitle] = useState<string | undefined>("");
+  const [description, setDescription] = useState<string | undefined>("");
 
   const data = {
     type: "text",
     placeholder: "Enter Title",
   };
 
-  const handleSubmit = (e:Event) => {
+  const handleSubmit = (e: Event) => {
     e.preventDefault();
     // console.log("submit");
-    console.log(title, description,images);
+    console.log(title, description, images);
   };
 
   const selectFiles = (): void => {
@@ -93,7 +94,7 @@ function BlogForm() {
       </h1>
       <form
         className="form-contaner flex flex-col gap-8"
-        onSubmit={(e) =>handleSubmit}
+        onSubmit={(e) => handleSubmit}
       >
         <Input
           label="Title"
@@ -156,10 +157,13 @@ function BlogForm() {
               >
                 &times;
               </span>
-              <img
+
+              <Image
+                width={112}
+                height={112}
                 src={image.url}
                 alt={image.name}
-                className="object-cover w-full h-full rounded"
+                className="object-cover rounded"
               />
             </div>
           ))}
